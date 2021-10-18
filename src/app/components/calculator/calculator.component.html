@@ -1,0 +1,51 @@
+<ng-container *ngIf="{
+    isLoaded: isLoaded$ | async,
+    occupations: occupations$ | async,
+    premiumAmount: premiumAmount$ | async
+  } as data">
+    <h1>Calculate your Insurance Premium!</h1>
+    <br/>
+    <div class="row">
+        <span>Name:</span>
+        <input type="text" 
+            [ngModel]="insuranceDetails.name" (ngModelChange)="insuranceDetails.name = $event" />
+    </div>
+
+    <div class="row">
+        <span>Age:</span>
+        <input type="text" numberOnly minlength="2" maxlength="2" min="18" max="100"
+            [ngModel]="insuranceDetails.age" (ngModelChange)="insuranceDetails.age = $event"/>
+    </div>
+    
+    <div class="row">
+        <app-date-picker [label]="'Date of Birth'" [canClear]="canClear">
+            <!-- (insuranceDdate)="insuranceDetails.dateOfBirth = $event" > -->
+            <!-- [(insuranceDdate)]="insuranceDetails.dateOfBirth"> -->
+        </app-date-picker>
+    </div>
+        
+    <div class="row">
+        <app-dropdown [label]="'Occupation'" [canClear]="canClear" (cleared)="cleared()"
+            [occupations]="data?.occupations" (selectedId)="selectOccupation($event)">
+        </app-dropdown>   
+    </div>        
+
+    <div class="row">
+        <span>Sum Insured $:</span>
+        <input type="text" numberOnly minlength="2" maxlength="25"
+            [ngModel]="insuranceDetails.deathCoverAmount" 
+            (ngModelChange)="insuranceDetails.deathCoverAmount = $event" />
+    </div>
+
+    <br/>
+    <div *ngIf="data?.premiumAmount">
+        <h3>Your Monthly Premium:<span [innerText]="data?.premiumAmount | currency"> </span> </h3>        
+    </div>
+
+    <br/>
+    <button class = "button" [ngClass] = "isReady ? 'active' : 'inactive'"
+        [disabled]="!isReady" (click)="calculate()">
+        <span>Calculate </span>
+    </button>
+    <button class = "button active" (click)="clear()">Clear</button>
+</ng-container>

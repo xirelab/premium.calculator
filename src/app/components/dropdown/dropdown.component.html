@@ -1,0 +1,5 @@
+<span [innerText]="label"> </span>
+<select [(ngModel)]="selectedValue" (change)="occupationClicked()"> 
+    <option></option>            
+    <option *ngFor="let o of occupations" [ngValue]="o">{{o.name}}</option>  
+</select>
