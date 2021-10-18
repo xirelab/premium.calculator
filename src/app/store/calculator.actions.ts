@@ -7,6 +7,7 @@ export enum CalculatorActionTypes {
   LoadOccupationsCompleted = '[Calculator] Load Occupations Completed',
   CalculatePremium = '[Calculator] Calculate Premium',
   CalculatePremiumCompleted = '[Calculator] Calculate Premium Completed',
+  CalculatePremiumErrored = '[Calculator] Calculate Premium Errored',
   ClearInsuranceDetails = '[Calculator] Clear Insurance Details',
 }
 
@@ -25,6 +26,11 @@ export const CalculatePremium = createAction(
 export const CalculatePremiumCompleted = createAction(
   CalculatorActionTypes.CalculatePremiumCompleted,
   props<{ response: any }>()
+);
+
+export const CalculatePremiumErrored = createAction(
+  CalculatorActionTypes.CalculatePremiumErrored,
+  props<{ errorDetails: any }>()
 );
 
 export const ClearInsuranceDetails = createAction(CalculatorActionTypes.ClearInsuranceDetails);

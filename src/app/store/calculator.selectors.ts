@@ -14,3 +14,7 @@ export const occupations = createSelector(
 export const premiumAmount = createSelector(
   selector, state => state && state.premiumAmount
 );
+
+export const errorMessage = createSelector(
+  selector, state => state && state.errorMessage
+);

@@ -19,6 +19,7 @@ export class CalculatorComponent implements OnInit {
   isLoaded$ = this.store.pipe(select(selector.isLoaded));
   occupations$ = this.store.pipe(select(selector.occupations));
   premiumAmount$ = this.store.pipe(select(selector.premiumAmount));
+  errorMessage$ = this.store.pipe(select(selector.errorMessage));
 
   insuranceDetails = new InsuranceDetails();
   canClear: boolean = false;
@@ -49,6 +50,7 @@ export class CalculatorComponent implements OnInit {
   clear() {
     this.insuranceDetails = new InsuranceDetails();
     this.canClear = true;
+    this.store.dispatch(actions.ClearInsuranceDetails());
   }
   
   cleared() {

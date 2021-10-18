@@ -1,7 +1,8 @@
 <ng-container *ngIf="{
     isLoaded: isLoaded$ | async,
     occupations: occupations$ | async,
-    premiumAmount: premiumAmount$ | async
+    premiumAmount: premiumAmount$ | async,
+    errorMessage: errorMessage$ | async
   } as data">
     <h1>Calculate your Insurance Premium!</h1>
     <br/>
@@ -48,4 +49,8 @@
         <span>Calculate </span>
     </button>
     <button class = "button active" (click)="clear()">Clear</button>
+    <br/>
+    <div *ngIf="data?.errorMessage">
+        <app-error-banner [errorMessage]="data?.errorMessage"></app-error-banner>
+    </div>    
 </ng-container>

@@ -5,6 +5,7 @@ export interface CalculatorState {
     isLoaded: boolean;
     occupations: Array<Occupation>;
     premiumAmount: number;
+    errorMessage: string;
 }
 
 export class AppState {

@@ -12,15 +12,14 @@ export class CalculatorService {
     constructor(private http: HttpClient){};
 
     getOccupations(): Observable<any> {
-        // const url = "https://localhost:44309/api/calculator/occupations";
-        const url = "api/occupations";  // TODO
+        const url = "https://localhost:44309/api/calculator/occupations";
+        // const url = "api/occupations";  // for local running
         return this.http.get<any>(url).pipe(
-            // map(response => { 
-            //     console.error("my response");
-            //     console.error(response);
-            //     return response; 
-            // }),
-            retry(2),  // TODO
+            map(response => { 
+                console.error("my response");
+                console.error(response);
+                return response; 
+            }),
             catchError((error: HttpErrorResponse) => {
               console.error(error);
               return throwError(error);
@@ -29,11 +28,9 @@ export class CalculatorService {
     }
 
     calculatePremium(insuranceDetails: InsuranceDetails): Observable<any> {
-      const url = "https://localhost:44309/api/calculator/occupations";
+      const url = "https://localhost:44309/api/calculator/calculate";
       console.log("my payload");
       console.log(insuranceDetails);
-      // const payload = insuranceDetails.
-
       return this.http.post<any>(url, insuranceDetails).pipe(
           map(response => { 
               console.log("my response");

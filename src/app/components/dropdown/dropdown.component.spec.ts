@@ -1,4 +1,6 @@
+import { SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Occupation } from 'src/app/models/occupation.model';
 
 import { DropdownComponent } from './dropdown.component';
 
@@ -21,5 +23,20 @@ describe('DropdownComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('occupationClicked', () => {
+    it('should emit cleared', () => {
+      // Arrange
+      component.selectedValue =  new Occupation;
+      component.selectedValue.id = 2;
+      spyOn(component.selectedId, 'emit');
+     
+      // Act
+      component.occupationClicked();
+
+      // Assert
+      expect(component.selectedId.emit).toHaveBeenCalledWith(2);
+    });
   });
 });

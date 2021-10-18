@@ -1,1 +1,7 @@
-<p>error-banner works!</p>
+<br/>
+<span>An error occured..</span>
+<button (click)="showMessage=true">click here for more details.. !</button>
+
+<div *ngIf="showMessage">
+    {{errorMessage}}
+</div>

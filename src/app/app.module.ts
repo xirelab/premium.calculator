@@ -32,7 +32,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),   // for local running
     EffectsModule.forRoot([]),
     StoreModule.forRoot([]),
     EffectsModule.forFeature([CalculatorEffects]),

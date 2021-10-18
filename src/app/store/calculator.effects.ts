@@ -5,7 +5,8 @@ import { CalculatorActionTypes } from "./calculator.actions";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AppState } from "./calculator.state";
 import * as actions from "./calculator.actions";
-import { map, mergeMap, withLatestFrom } from "rxjs/operators";
+import { catchError, map, mergeMap, withLatestFrom } from "rxjs/operators";
+import { of } from "rxjs";
 
 @Injectable()
 export class CalculatorEffects {
@@ -33,8 +34,11 @@ export class CalculatorEffects {
       withLatestFrom(this.store$),
       mergeMap(([insuranceDetails, state]) => {
         return this.CalculatorService.calculatePremium(insuranceDetails)
-          .pipe(
-            map(data => actions.CalculatePremiumCompleted({response: data}))
+          .pipe(            
+            map(data => actions.CalculatePremiumCompleted({response: data})),
+            catchError(error => {
+              return of(actions.CalculatePremiumErrored({errorDetails: error}));
+            })
           );       
       })      
     )
