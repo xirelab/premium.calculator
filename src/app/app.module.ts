@@ -8,30 +8,26 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CalculatorComponent } from './components/calculator/calculator.component';
-import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { CalculatorComponent } from './calculator/components/calculator/calculator.component';
+import { DatePickerComponent } from './calculator/components/date-picker/date-picker.component';
 import { CalculatorEffects } from './store/calculator.effects';
 import { CalculatorReducer } from './store/calculator.reducer';
-import { ErrorBannerComponent } from './components/error-banner/error-banner.component';
 import { FormsModule } from '@angular/forms';
 import { NumberOnlyDirective } from './directives/numbers-only.directive';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalculatorComponent,
-    DatePickerComponent,
-    ErrorBannerComponent,
     NumberOnlyDirective,
-    DropdownComponent
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule,    
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),   // for local running
     EffectsModule.forRoot([]),
     StoreModule.forRoot([]),

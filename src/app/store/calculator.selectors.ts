@@ -7,6 +7,14 @@ export const isLoaded = createSelector(
   selector, state => state && state.isLoaded
 );
 
+export const loginStatus = createSelector(
+  selector, state => state && state.loginStatus
+);
+
+export const user = createSelector(
+  selector, state => state && state.user
+);
+
 export const occupations = createSelector(
   selector, state => state && state.occupations
 );

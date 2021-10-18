@@ -1,10 +1,15 @@
 <ng-container *ngIf="{
     isLoaded: isLoaded$ | async,
+    user: user$ | async,
     occupations: occupations$ | async,
     premiumAmount: premiumAmount$ | async,
     errorMessage: errorMessage$ | async
   } as data">
     <h1>Calculate your Insurance Premium!</h1>
+    <div style="float: right;">
+        <span class="maring5">Welcome {{data?.user?.firstName}}, {{data?.user?.lastName}}</span>
+        <button (click)="logOut()">Logout</button>
+    </div>    
     <br/>
     <div class="row">
         <span>Name:</span>

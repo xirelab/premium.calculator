@@ -1,4 +1,5 @@
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
@@ -16,6 +17,7 @@ describe('CalculatorComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         NgbModule,
+        RouterTestingModule,
         EffectsModule.forRoot([]),
         StoreModule.forRoot([]),
         StoreModule.forFeature('board', CalculatorReducer),

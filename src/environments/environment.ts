@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  
+  baseUrl: 'https://localhost:44309/api/calculator'  // when integrating with actual api
+
+  // baseUrl: 'api'  // when integrating with stubbed api (in-memory-data)
 };
 
 /*

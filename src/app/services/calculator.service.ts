@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
-import { Occupation } from "../models/occupation.model";
 import { Observable, throwError } from "rxjs";
 import { map, catchError, retry } from 'rxjs/operators';
 import { InsuranceDetails } from "../models/insurance-details.model";
+import { environment } from "../../environments/environment";
+import { User } from "../models/user.model";
 
 @Injectable({
     providedIn: 'root'
@@ -11,13 +12,15 @@ import { InsuranceDetails } from "../models/insurance-details.model";
 export class CalculatorService {
     constructor(private http: HttpClient){};
 
-    getOccupations(): Observable<any> {
-        const url = "https://localhost:44309/api/calculator/occupations";
-        // const url = "api/occupations";  // for local running
-        return this.http.get<any>(url).pipe(
+    getOccupations(user: User): Observable<any> {
+        const url = `${environment.baseUrl}/occupations`;
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
+        });
+        return this.http.get<any>(url, { headers: headers }).pipe(
             map(response => { 
-                console.error("my response");
-                console.error(response);
+                console.log(response);
                 return response; 
             }),
             catchError((error: HttpErrorResponse) => {
@@ -27,13 +30,15 @@ export class CalculatorService {
           );
     }
 
-    calculatePremium(insuranceDetails: InsuranceDetails): Observable<any> {
-      const url = "https://localhost:44309/api/calculator/calculate";
-      console.log("my payload");
+    calculatePremium(insuranceDetails: InsuranceDetails, user: User): Observable<any> {
+      const url = `${environment.baseUrl}/calculate`;
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
+      });
       console.log(insuranceDetails);
-      return this.http.post<any>(url, insuranceDetails).pipe(
+      return this.http.post<any>(url, insuranceDetails, { headers: headers }).pipe(
           map(response => { 
-              console.log("my response");
               console.log(response);
               return response; 
           }),

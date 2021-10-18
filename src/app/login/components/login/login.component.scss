@@ -1,0 +1,25 @@
+  div {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  input {
+    width: 222px;
+    height: 32px;
+  }
+
+  span {
+    width: 222px;
+  }
+
+  input:invalid {
+    border: 2px solid red;
+  }
+
+  .margin-left {
+    margin-left: 190px;
+  }
+
+  .error {
+    color: red;
+  }

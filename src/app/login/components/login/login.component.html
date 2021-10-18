@@ -1,0 +1,23 @@
+<ng-container *ngIf="{
+    loginStatus: loginStatus$ | async
+  } as data">
+    <h1>Calculate your Insurance Premium!</h1>
+    <br/><br/>
+    <div class="row">
+        <span>User Name:</span>
+        <input type="text" [ngModel]="username" (ngModelChange)="username = $event" />
+    </div>
+
+    <div class="row">
+        <span>Password:</span>
+        <input type="text" [ngModel]="password" (ngModelChange)="password = $event" (keypress)="keyPress($event)"/>
+    </div>
+
+    <div *ngIf="data?.loginStatus == 'failed'">
+        <span class="error">login failed.. </span>
+    </div>
+
+    <br/>
+    <button [disabled]="!isReady" class = "margin-left" (click)="login()">Login</button>
+
+</ng-container>
