@@ -22,7 +22,7 @@ export class CalculatorEffects {
     this. action$.pipe(
       ofType(CalculatorActionTypes.LoginUser),      
       withLatestFrom(this.store$),
-      mergeMap(([user, state]) => {
+      mergeMap(([user]) => {
         return this.loginService.login(user)
           .pipe(            
             map(data => actions.LoginUserCompleted({response: data})),

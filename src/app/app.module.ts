@@ -14,7 +14,6 @@ import { CalculatorEffects } from './store/calculator.effects';
 import { CalculatorReducer } from './store/calculator.reducer';
 import { FormsModule } from '@angular/forms';
 import { NumberOnlyDirective } from './directives/numbers-only.directive';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterTestingModule } from '@angular/router/testing';
 
 @NgModule({
@@ -39,7 +38,7 @@ import { RouterTestingModule } from '@angular/router/testing';
         strictActionImmutability: false,
       }
     }),
-    NgbModule
+    // NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
